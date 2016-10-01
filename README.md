@@ -35,12 +35,6 @@ This application uses the [MongoDB experimental service](https://www.ng.bluemix.
 6. Run `node server.js` to start your app
 7. Open a browser to the link provided in the terminal prompt to view your app
 
-##### Deploy to Bluemix
-
-Option 1 (launch this app directly from this repo):
-
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/Nodejs-MEAN-Stack)
-
 Option 2 (deploy from your local machine):
 
 1. Clone or download this repo onto your machine.
