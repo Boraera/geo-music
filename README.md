@@ -56,7 +56,7 @@ Find us on [Stack Overflow](https://stackoverflow.com/questions/tagged/bluemix) 
 | [**.env.example**](./.env.example) | Set custom [environment variables](https://en.wikipedia.org/wiki/Environment_variable) for your application. This is the proper way to store credentials and other sensitive values.
 | [**server.js**](./server.js) | Main server file that the Node.js runtime uses. It contains all the server logic.
 | [**/server**](./server) | Folder for files used by the Node.js server
-| [/server/models/**user.model.js**](./server/models) | Model for storing users and other data in MongoDB
+| [/server/models**](./server/models) | Model for storing users and other data in MongoDB
 | [**/public**](./public) | Folder for files delivered to users, such as html and css files
 | [/public/js/**app.js**](./public/js/app.js) | Angular application for manipulating and rendering data in browser
 
