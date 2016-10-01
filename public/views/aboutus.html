@@ -1,0 +1,39 @@
+
+<div class="container">
+    <div class="row row-content">
+        <div class="col-xs-12 col-sm-9">
+            <img  src="images/aboutImage.png" style="width:100%;height:100%;top:0;left:0;"  alt="">
+        </div>        
+    </div>
+</div>        
+
+<div class="container">
+    <div class="row row-content">
+            <div class="col-xs-12 col-sm-9">
+                <h2 align=center>
+                    Our mission
+                </h2>    
+                <h3 align=center>
+                    We are playing in GEO band. We started our mission to invent a new era in balkan ska music. Our venues in the past included Flórián tér, Muzikum Klub, Kis Á, Gödör Klub, Magyar Színház and Balatonboglár. In 2016 we released our first EP named Szófiai Utcakő. Our lyrics express social critic, moderate political sarcasm, tolerance towards each other and world peace. Our appearances occur monthly concentrated mainly to the summer. Our motivation is to make a difference in the thinking about the dynamic of the hungarian music culture therefore we practice our music as a hobby in a non-profit way.
+                </h3>
+               <ul class="media-list">
+                <li class="media" ng-repeat="musician in musicians">
+                    <div class="media-left media-middle">
+                        <a>
+                        <img class="media-object img-thumbnail"
+                        ng-src={{musician.image}} alt="Musician" style="width:400px;height:400px;">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">{{musician.name}}</h3>
+                        <p>{{musician.description}}</p>
+                    </div>
+                </li>
+            </ul>
+
+            </div>
+             <div class="col-xs-12 col-sm-3">
+                <p style="padding:20px;"></p>
+            </div>
+       </div>
+</div>

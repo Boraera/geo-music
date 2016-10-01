@@ -1,0 +1,38 @@
+
+<div class="container">
+    <div class="row row-content">
+        <div class="col-xs-12 col-sm-9">
+            <img  src="images/musicImage.jpg" style="width:100%;height:100%;top:0;left:0;"  alt="">
+        </div>        
+    </div>
+</div>        
+
+<div class="container">
+    <div class="row row-content">
+            <div class="col-xs-12 col-sm-9">
+                <h2 align=center>
+                    Geo music
+               </h2>
+               <h3 align=center>
+                We play Alternative balkan ska music with influences of experimental jazz and Rock'n' Roll. Our mission is to invent a new era in balkan ska music. Here you can listen some of our music. Enjoy it!
+               </h3>    
+               <ul class="media-list">
+                <li class="media" ng-repeat="music in musics">
+                    <div class="media-left media-middle">
+                        <a>
+                        <img class="media-object img-thumbnail"
+                        ng-src={{music.image}} alt="Music" style="width:400px;height:400px;">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                       <h3 class="media-heading"><a href={{music.link}}>{{music.name}}</a></h3>
+                        <p>{{music.description}}</p>
+                    </div>
+                </li>
+            </ul>
+            </div>
+             <div class="col-xs-12 col-sm-3">
+                <p style="padding:20px;"></p>
+            </div>
+       </div>
+</div>

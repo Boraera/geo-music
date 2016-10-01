@@ -2,9 +2,74 @@
 
 var app = angular.module('MEANapp', ['ngRoute', 'ngStorage']);
 
+
 /*********************************
  Controllers
  *********************************/
+
+app.controller('MusicController', function($scope, $location, $http){
+
+    $http({
+        method: 'GET',
+        url: '/music'
+    })
+        .success(function(response){
+            $scope.musics = response;
+            console.log("music: ", $scope.musics);
+        })
+        .error(function(response){
+            alert(response);
+            $location.path('/music');
+        }
+    );
+});
+
+app.controller('MusicianController', function($scope, $location, $http){
+
+    $http({
+        method: 'GET',
+        url: '/musician'
+    })
+        .success(function(response){
+            $scope.musicians = response;
+            console.log("musicians: ", $scope.musicians);
+        })
+        .error(function(response){
+            alert(response);
+            $location.path('/about');
+        }
+    );
+});
+
+app.controller('EventController', function($scope, $location, $http, $localStorage){
+    $scope.user = $localStorage;
+    
+    $http({
+        method: 'GET',
+        url: '/event'
+    })
+        .success(function(response){
+            $scope.events = response;
+            console.log("events: ", $scope.events);
+        })
+        .error(function(response){
+            alert(response);
+            $location.path('/event');
+        }
+    );
+    
+    $scope.openAddComment = function (eventid) {
+        console.log("open add comment, event id: ", eventid);
+        //$stateParams.id = eventid;
+        $scope.id = eventid;
+        /*if(!$localStorage.user.status) {
+            ngDialog.open({ template: 'views/warning.html', scope: $scope, className: 'ngdialog-theme-default', controller:"EventController" });
+            return;
+        }
+        ngDialog.open({ template: 'views/comment.html', scope: $scope, className: 'ngdialog-theme-default', controller:"EventController" });*/
+    };
+});
+
 
 app.controller('HeaderController', function($scope, $localStorage, $sessionStorage, $location, $http){
 
@@ -50,6 +115,7 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
                 // $localStorage persists data in browser's local storage (prevents data loss on page refresh)
                 $localStorage.status = true;
                 $localStorage.user = response;
+                $localStorage.admin = ($scope.loginForm.username == "Administrator" &&                      $scope.loginForm.password == "1e2l3k4m");
                 $location.path('/');
             })
             .error(function(){
@@ -62,6 +128,172 @@ app.controller('LoginController', function($scope, $localStorage, $sessionStorag
     $scope.createAccount = function(){
         $location.path('/account/create');
     }
+});
+
+
+
+app.controller('AdministrationController', function($scope, $localStorage, $sessionStorage, $http, $location){
+
+    // Create music
+    $scope.uploadMusic = function(){
+        console.log("music upload:", $scope.newMusic);
+        $http({
+            method: 'POST',
+            url: '/music/add',
+            data: {
+                    'name' : $scope.newMusic.name,
+                    'image' : $scope.newMusic.image,
+                    'link' : $scope.newMusic.link,
+                    'description' : $scope.newMusic.description
+                }
+            })
+            .success(function(response){
+                alert(response);
+                $location.path('/music/add');
+                console.log("data upload to musics:", data);
+            })
+            .error(function(response){
+                // When a string is returned
+                if(typeof response === 'string'){
+                    alert(response);
+                }
+                // When array is returned
+                else if (Array.isArray(response)){
+                    // More than one message returned in the array
+                    if(response.length > 1){
+                        var messages = [],
+                            allMessages;
+                        for (var i = response.length - 1; i >= 0; i--) {
+                            messages.push(response[i]['msg']);
+                            if(response.length == 0){
+                                allMessages = messages.join(", ");
+                                alert(allMessages);
+                                console.error(response);
+                            }
+                        }
+                    }
+                    // Single message returned in the array
+                    else{
+                        alert(response[0]['msg']);
+                        console.error(response);
+                    }
+                }
+                // When something else is returned
+                else{
+                    console.error(response);
+                    alert("See console for error.");
+                }
+            }
+        );      
+    };
+    
+    
+    // Create musician
+    $scope.uploadData = function(){
+        console.log("data upload:", $scope.newMusician);
+        $http({
+            method: 'POST',
+            url: '/musician/add',
+            data: {
+                    'name' : $scope.newMusician.name,
+                    'image' : $scope.newMusician.image,
+                    'description' : $scope.newMusician.description
+                }
+            })
+            .success(function(response){
+                alert(response);
+                $location.path('/musician/add');
+                console.log("data upload to musician:", data);
+            })
+            .error(function(response){
+                // When a string is returned
+                if(typeof response === 'string'){
+                    alert(response);
+                }
+                // When array is returned
+                else if (Array.isArray(response)){
+                    // More than one message returned in the array
+                    if(response.length > 1){
+                        var messages = [],
+                            allMessages;
+                        for (var i = response.length - 1; i >= 0; i--) {
+                            messages.push(response[i]['msg']);
+                            if(response.length == 0){
+                                allMessages = messages.join(", ");
+                                alert(allMessages);
+                                console.error(response);
+                            }
+                        }
+                    }
+                    // Single message returned in the array
+                    else{
+                        alert(response[0]['msg']);
+                        console.error(response);
+                    }
+                }
+                // When something else is returned
+                else{
+                    console.error(response);
+                    alert("See console for error.");
+                }
+            }
+        );
+        
+    };
+    
+    
+    // Create event
+    $scope.uploadEvent = function(){
+        console.log("event upload:", $scope.newEvent);
+        $http({
+            method: 'POST',
+            url: '/event/add',
+            data: {
+                    'name' : $scope.newEvent.name,
+                    'image' : $scope.newEvent.image,
+                    'description' : $scope.newEvent.description
+                }
+            })
+            .success(function(response){
+                alert(response);
+                $location.path('/event/add');
+                console.log("data upload to events:", data);
+            })
+            .error(function(response){
+                // When a string is returned
+                if(typeof response === 'string'){
+                    alert(response);
+                }
+                // When array is returned
+                else if (Array.isArray(response)){
+                    // More than one message returned in the array
+                    if(response.length > 1){
+                        var messages = [],
+                            allMessages;
+                        for (var i = response.length - 1; i >= 0; i--) {
+                            messages.push(response[i]['msg']);
+                            if(response.length == 0){
+                                allMessages = messages.join(", ");
+                                alert(allMessages);
+                                console.error(response);
+                            }
+                        }
+                    }
+                    // Single message returned in the array
+                    else{
+                        alert(response[0]['msg']);
+                        console.error(response);
+                    }
+                }
+                // When something else is returned
+                else{
+                    console.error(response);
+                    alert("See console for error.");
+                }
+            }
+        );
+        
+    };
 });
 
 app.controller('CreateAccountController', function($scope, $localStorage, $sessionStorage, $http, $location){
@@ -228,6 +460,30 @@ app.config(function($routeProvider) {
         when('/', {
             templateUrl: 'views/home.html',
             controller: 'HomeController'
+        }).
+    
+        //About
+        when('/about', {
+            templateUrl: 'views/aboutus.html',
+            controller: 'MusicianController'
+        }).
+
+        //Event
+        when('/event', {
+            templateUrl: 'views/events.html',
+            controller: 'EventController'
+        }).
+    
+        //Music
+        when('/music', {
+            templateUrl: 'views/musics.html',
+            controller: 'MusicController'
+        }).
+    
+        //Admin
+        when('/admin', {
+            templateUrl: 'views/admin.html',
+            controller: 'AdministrationController'
         }).
 
         //Login page

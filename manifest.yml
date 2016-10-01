@@ -1,13 +1,13 @@
 ---
 applications:
-- name: mean
-  host: mean-${random-word}
+- name: geo-music
+  host: geo-music
   memory: 256M
   services:
-  - mean-mongo
+  - geo-mongo
   env:
     NODE_ENV: cloud-foundry
 declared-services:
-  mean-mongo:
+  geo-mongo:
     label: mongodb
     plan: 100

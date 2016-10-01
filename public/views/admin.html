@@ -1,0 +1,163 @@
+<!--admin.html-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h2>Administration</h2>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h3>Musician Administration</h3>
+        <form class="form-horizontal" novalidate ng-submit="uploadData()" name="uploadDataForm">
+            <fieldset>
+                <div class="form-group">
+                    <label for="inputName" class="col-lg-3 control-label">Name</label>
+                    <div class="col-lg-9">
+                        <input type="text"
+                               class="form-control"
+                               id="inputName"
+                               ng-model="newMusician.name"
+                               required
+                               >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputImage" class="col-lg-3 control-label">Image</label>
+                    <div class="col-lg-9">
+                        <input type="text"
+                               class="form-control"
+                               id="inputImage"
+                               ng-model="newMusician.image"
+                               required
+                               >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputUsername" class="col-lg-3 control-label">Description</label>
+                    <div class="col-lg-9">
+                        <input type="text"
+                               class="form-control"
+                               id="inputDescription"
+                               ng-model="newMusician.description"
+                               >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-9 col-lg-offset-3">
+                        <input class="btn btn-primary" type="submit" ng-disabled="uploadDataForm.$invalid" value="Add Musician">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h3>Event Administration</h3>
+        <form class="form-horizontal" novalidate ng-submit="uploadEvent()" name="uploadEventForm">
+            <fieldset>
+                <div class="form-group">
+                    <label for="inputName" class="col-lg-3 control-label">Name</label>
+                    <div class="col-lg-9">
+                        <input type="text"
+                               class="form-control"
+                               id="inputName"
+                               ng-model="newEvent.name"
+                               required
+                               >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputImage" class="col-lg-3 control-label">Image</label>
+                    <div class="col-lg-9">
+                        <input type="text"
+                               class="form-control"
+                               id="inputImage"
+                               ng-model="newEvent.image"
+                               required
+                               >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputUsername" class="col-lg-3 control-label">Description</label>
+                    <div class="col-lg-9">
+                        <input type="text"
+                               class="form-control"
+                               id="inputDescription"
+                               ng-model="newEvent.description"
+                               >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-9 col-lg-offset-3">
+                        <input class="btn btn-primary" type="submit" ng-disabled="uploadEventForm.$invalid" value="Add Event">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h3>Music Administration</h3>
+        <form class="form-horizontal" novalidate ng-submit="uploadMusic()" name="uploadMusicForm">
+            <fieldset>
+                <div class="form-group">
+                    <label for="inputName" class="col-lg-3 control-label">Name</label>
+                    <div class="col-lg-9">
+                        <input type="text"
+                               class="form-control"
+                               id="inputName"
+                               ng-model="newMusic.name"
+                               required
+                               >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputImage" class="col-lg-3 control-label">Image</label>
+                    <div class="col-lg-9">
+                        <input type="text"
+                               class="form-control"
+                               id="inputImage"
+                               ng-model="newMusic.image"
+                               required
+                               >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputLink" class="col-lg-3 control-label">Link</label>
+                    <div class="col-lg-9">
+                        <input type="text"
+                               class="form-control"
+                               id="inputLink"
+                               ng-model="newMusic.link"
+                               required
+                               >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescription" class="col-lg-3 control-label">Description</label>
+                    <div class="col-lg-9">
+                        <input type="text"
+                               class="form-control"
+                               id="inputDescription"
+                               ng-model="newMusic.description"
+                               >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-9 col-lg-offset-3">
+                        <input class="btn btn-primary" type="submit" ng-disabled="uploadMusicForm.$invalid" value="Add Music">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<!--/admin.html-->

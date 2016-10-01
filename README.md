@@ -1,18 +1,20 @@
-# MEAN Boilerplate Overview
+# Geo musci band web application Overview
 
-<img src="https://dl.dropboxusercontent.com/s/vd367cadrk97zjg/MEAN%20Logo.jpg">
+This project is created from a basic boilerplate for the MEAN stack ([MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [AngularJS](https://angularjs.org/) and [Node.js](https://nodejs.org)) on [IBM Bluemix](http://bluemix.net).
 
-This is a basic boilerplate for the MEAN stack ([MongoDB](https://www.mongodb.org/), [Express](http://expressjs.com/), [AngularJS](https://angularjs.org/) and [Node.js](https://nodejs.org)) on [IBM Bluemix](http://bluemix.net).
-
-Live Example: [https://nodejs-mean-stack.mybluemix.net](https://nodejs-mean-stack.mybluemix.net)
+Live Example: [https://geo-music.mybluemix.net/](https://geo-music.mybluemix.net/)
 
 This application uses the [MongoDB experimental service](https://www.ng.bluemix.net/docs/#services/MongoDB/index.html#MongoDB) and [Node.js runtime](https://www.ng.bluemix.net/docs/starters/nodejs/index.html) on Bluemix.
 
 #### Features
-- MVC project structure
-- Create, edit and delete user accounts
+- Geo home: impressive and condensed page about the GEO mission displayed on a well visible place of the web-app available for any user
+- About: impressive and condensed page about GEO band and musicians displayed on a well visible place of the web-app
+- Events: visualisation possibility of the latest GEO events available for any user
+- Our music: visualisation possibility of the latest GEO music collections on the web site available for registered users only. This is a rotected route for listening music that can only be accessed by authenticated users.
+- Account, Register: Create, edit and delete user accounts
 - Authentication with username/password
-- Protected routes that can only be accessed by authenticated users
+- Administration: data upload for Geo band administrator to upload new music, event and band related data.
+- MVC project structure
 - Bootstrap CSS framework & [Cosmo theme](https://bootswatch.com/cosmo/)
 - HTTPS built-in if deployed to [Bluemix](#deploy-to-bluemix)
 - [Mongoose](https://github.com/Automattic/mongoose) for MongoDB interactions.
@@ -65,6 +67,7 @@ Find us on [Stack Overflow](https://stackoverflow.com/questions/tagged/bluemix) 
 | [/public/js/**app.js**](./public/js/app.js) | Angular application for manipulating and rendering data in browser
 
 
+
 ## Application
 - **MongoDB** stores user account information and persists sessions (so that a server crash does not log out all users.)
 - **Express** functions Node.js middleware to handle all HTTP requests and routing.
@@ -72,9 +75,6 @@ Find us on [Stack Overflow](https://stackoverflow.com/questions/tagged/bluemix) 
 - **Node.js** is the runtime for the application.
 
 There is also generous commenting throughout the application which helps explain critical parts of the application.
-
-## Contribute
-Please create a pull request with your desired changes.
 
 ## Troubleshooting
 The primary source of debugging information for your Bluemix app is the logs. To see them, run the following command using the Cloud Foundry CLI:
@@ -90,6 +90,3 @@ If you are not sure what your application name is, use this command to print you
   ```
 
 For more detailed information on troubleshooting your application, see the [Troubleshooting section](https://www.ng.bluemix.net/docs/troubleshoot/tr.html) in the Bluemix documentation.
-
-## License
-See [LICENSE.MD](https://github.com/IBM-Bluemix/Nodejs-MEAN-Stack/blob/master/LICENSE.md) for license information.

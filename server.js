@@ -20,7 +20,10 @@ var express = require('express'),// server middleware
     cfenv = require('cfenv'),// Cloud Foundry Environment Variables
     appEnv = cfenv.getAppEnv(),// Grab environment variables
 
-    User = require('./server/models/user.model');
+    User = require('./server/models/user.model'),
+    Music = require('./server/models/musics'),
+    Musician = require('./server/models/musicians'),
+    Event = require('./server/models/events');
     
 
 /********************************
@@ -300,4 +303,149 @@ Ports
 ********************************/
 app.listen(appEnv.port, appEnv.bind, function() {
   console.log("Node server running on " + appEnv.url);
+});
+
+
+/********************************
+Musics
+********************************/
+// Music creation
+app.post('/music/add', function(req,res){
+
+    // 1. Input validation. Front end validation exists, but this functions as a fail-safe
+    req.checkBody('name', 'Name is required').notEmpty();
+    req.checkBody('image', 'Image is required').notEmpty();
+    req.checkBody('link', 'Link is required').notEmpty();
+    req.checkBody('description', 'Description is required and must be in a valid form').notEmpty();
+
+    var errors = req.validationErrors(); // returns an array with results of validation check
+    if (errors) {
+        res.status(400).send(errors);
+        return;
+    }
+    
+    // 3. Create new object that store's new music data
+    var music = new Music({
+        name: req.body.name,
+        image: req.body.image,
+        link: req.body.link,
+        description: req.body.description
+    });
+
+    // 4. Store the data in MongoDB
+    Music.findOne({ name: req.body.name }, function(err, existingName) {
+        if (existingName) {
+            return res.status(400).send('That name already exists. Please try a different music name.');
+        }
+        music.save(function(err) {
+            if (err) {
+                console.log(err);
+                res.status(500).send('Error saving new music (database error). Please try again.');
+                return;
+            }
+            res.status(200).send('Music created!');
+        });
+    });
+});
+
+app.get('/music', function(req, res){
+    Music.find({}, function(err, results){
+        return res.send(results);
+    });
+});
+
+
+/********************************
+Musicians
+********************************/
+// Musician creation
+app.post('/musician/add', function(req,res){
+
+    // 1. Input validation. Front end validation exists, but this functions as a fail-safe
+    req.checkBody('name', 'Name is required').notEmpty();
+    req.checkBody('image', 'Image is required').notEmpty();
+    req.checkBody('description', 'Description is required and must be in a valid form').notEmpty();
+
+    var errors = req.validationErrors(); // returns an array with results of validation check
+    if (errors) {
+        res.status(400).send(errors);
+        return;
+    }
+
+    
+    // 3. Create new object that store's new musician data
+    var musician = new Musician({
+        name: req.body.name,
+        image: req.body.image,
+        description: req.body.description
+    });
+
+    // 4. Store the data in MongoDB
+    Musician.findOne({ name: req.body.name }, function(err, existingName) {
+        if (existingName) {
+            return res.status(400).send('That name already exists. Please try a different musician name.');
+        }
+        musician.save(function(err) {
+            if (err) {
+                console.log(err);
+                res.status(500).send('Error saving new musician (database error). Please try again.');
+                return;
+            }
+            res.status(200).send('Musician created!');
+        });
+    });
+});
+
+app.get('/musician', function(req, res){
+    Musician.find({}, function(err, results){
+        return res.send(results);
+    });
+});
+
+
+/********************************
+Events
+********************************/
+// Event creation
+app.post('/event/add', function(req,res){
+
+    // 1. Input validation. Front end validation exists, but this functions as a fail-safe
+    req.checkBody('name', 'Name is required').notEmpty();
+    req.checkBody('image', 'Image is required').notEmpty();
+    req.checkBody('description', 'Description is required and must be in a valid form').notEmpty();
+
+    var errors = req.validationErrors(); // returns an array with results of validation check
+    if (errors) {
+        res.status(400).send(errors);
+        return;
+    }
+
+    
+    // 3. Create new object that store's new event data
+    var event = new Event({
+        name: req.body.name,
+        image: req.body.image,
+        description: req.body.description
+    });
+
+    // 4. Store the data in MongoDB
+    Event.findOne({ name: req.body.name }, function(err, existingName) {
+        if (existingName) {
+            return res.status(400).send('That name already exists. Please try a different event name.');
+        }
+        event.save(function(err) {
+            if (err) {
+                console.log(err);
+                res.status(500).send('Error saving new event (database error). Please try again.');
+                return;
+            }
+            res.status(200).send('Event created!');
+        });
+    });
+});
+
+app.get('/event', function(req, res){
+    Event.find({}, function(err, results){
+        return res.send(results);
+    });
 });
