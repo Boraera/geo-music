@@ -84,3 +84,5 @@ If you are not sure what your application name is, use this command to print you
   ```
 
 For more detailed information on troubleshooting your application, see the [Troubleshooting section](https://www.ng.bluemix.net/docs/troubleshoot/tr.html) in the Bluemix documentation.
+For how to deploy to Bluemix:
+https://developer.ibm.com/bluemix/2015/09/02/mean-app-to-bluemix-in-one-click/
