@@ -97,6 +97,8 @@ app.controller('HeaderController', function($scope, $localStorage, $sessionStora
 
 app.controller('HomeController', function($scope, $localStorage, $sessionStorage){});
 
+app.controller('ContactusController', function($scope, $localStorage, $sessionStorage){});
+
 app.controller('LoginController', function($scope, $localStorage, $sessionStorage, $location, $http){
 
     // Login submission
@@ -478,6 +480,11 @@ app.config(function($routeProvider) {
         when('/music', {
             templateUrl: 'views/musics.html',
             controller: 'MusicController'
+        }).
+        
+        when('/contactus', {
+            templateUrl: 'views/contactus.html',
+            controller: 'ContactusController'
         }).
     
         //Admin
